@@ -16,7 +16,8 @@ class CheckoutPage extends StatelessWidget {
           children: [
             // Header
             Appbar(
-              label: 'Checkout',
+              title: 'Checkout',
+              centerTitle: true,
               onPressed: () => Navigator.pop(context),
             ),
 

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:truckrrone/CreateDigitalCard/ccmstocardtransfer.dart';
+import 'package:truckrrone/CreateDigitalCard/selectvehiclescreen.dart';
+import 'package:truckrrone/CreateDigitalCard/settingpage.dart';
 import 'package:truckrrone/Route/approutes.dart';
 import 'package:truckrrone/subscriptionpage/buyplantype.dart';
 import 'package:truckrrone/subscriptionpage/checkout_page.dart';
@@ -28,6 +31,9 @@ class MyApp extends StatelessWidget {
         AppRoutes.expiredpage: (context) => const FreeTrialExpiredPage(),
         AppRoutes.wewillcallyou: (context) => const WeWillCallYouPage(),
         AppRoutes.requestsendsuccessfully: (context) => const RequestSendSuccessfully(),
+        AppRoutes.selectvehiclecreatedigitalcard: (context) => const Selectvehiclescreen(),
+        AppRoutes.ccmstocardtransfercreatedigitalcard: (context) => const CcmsToCardTransferScreen(),
+        AppRoutes.settingspagecreatedigitalcard: (context) => const SettingsScreen(),
       },
     );
   }

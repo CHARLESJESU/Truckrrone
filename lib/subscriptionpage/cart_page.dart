@@ -22,7 +22,8 @@ class CartPage extends StatelessWidget {
           children: [
             // Header
             Appbar(
-              label: 'Cart',
+              title: 'Cart',
+              centerTitle: true,
               onPressed: () => Navigator.pop(context),
             ),
 

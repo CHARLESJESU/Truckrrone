@@ -94,6 +94,7 @@ class FreeTrialExpiredPage extends StatelessWidget {
                     label: 'Subscribe Now',
                     onPressed: () {
                       // Handle Subscribe Now action
+                      Navigator.pushNamed(context, AppRoutes.selectvehiclecreatedigitalcard);
                     },
                   ),
                 ],

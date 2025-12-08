@@ -6,4 +6,10 @@ class Imagepath {
   static const String expiredBackground = 'assets/expiredpage/Bg.png';
   static const String expiredCalender = 'assets/expiredpage/calender.png';
   static const String expiredwewillcall = 'assets/expiredpage/wewillcall.png';
+  static const String advancesetting = 'assets/ccmsbalance/advancesetting.png';
+  static const String generatempin = 'assets/ccmsbalance/generatempin.png';
+  static const String transactionhistory = 'assets/ccmsbalance/transactionhistory.png';
+  static const String wallet = 'assets/ccmsbalance/wallet.png';
+  static const String creditcard = 'assets/ccmsbalance/creditcard.png';
+
 }

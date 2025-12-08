@@ -35,6 +35,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   dropdown_flutter: ^1.0.3
+  multi_dropdown: ^3.0.1
+  proper_multiselect_search_dropdown: ^1.0.3
 
 dev_dependencies:
   flutter_test:
@@ -63,6 +65,7 @@ flutter:
      - assets/
      - assets/expiredpage/
      - assets/subscriptionpage/
+     - assets/ccmsbalance/
 
   #   - images/a_dot_ham.jpeg
 

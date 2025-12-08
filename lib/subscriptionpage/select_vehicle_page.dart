@@ -13,104 +13,124 @@ class SelectVehiclePage extends StatefulWidget {
 }
 
 class _SelectVehiclePageState extends State<SelectVehiclePage> {
-  // List of 10 vehicles with prices
+  // List of vehicles
   final List<VehicleItem> vehicles = [
     VehicleItem(vehicleNumber: 'TN 12 HG 8797', price: '₹500'),
-    VehicleItem(vehicleNumber: 'TN 12 HG 8798', price: '₹550'),
-    VehicleItem(vehicleNumber: 'TN 12 HG 8799', price: '₹600'),
-    VehicleItem(vehicleNumber: 'TN 12 HG 8800', price: '₹450'),
+    VehicleItem(vehicleNumber: 'TN 12 HG 8798', price: '₹540'),
+    VehicleItem(vehicleNumber: 'TN 12 HG 8799', price: '₹610'),
+    VehicleItem(vehicleNumber: 'TN 12 HG 8800', price: '₹455'),
     VehicleItem(vehicleNumber: 'TN 12 HG 8801', price: '₹525'),
-    VehicleItem(vehicleNumber: 'TN 12 HG 8802', price: '₹575'),
-    VehicleItem(vehicleNumber: 'TN 12 HG 8803', price: '₹625'),
-    VehicleItem(vehicleNumber: 'TN 12 HG 8804', price: '₹475'),
-    VehicleItem(vehicleNumber: 'TN 12 HG 8805', price: '₹650'),
-    VehicleItem(vehicleNumber: 'TN 12 HG 8806', price: '₹500'),
+    VehicleItem(vehicleNumber: 'TN 12 HG 8802', price: '₹580'),
+    VehicleItem(vehicleNumber: 'TN 12 HG 8803', price: '₹635'),
+    VehicleItem(vehicleNumber: 'TN 12 HG 8804', price: '₹470'),
+    VehicleItem(vehicleNumber: 'TN 12 HG 8805', price: '₹660'),
+    VehicleItem(vehicleNumber: 'TN 12 HG 8806', price: '₹505'),
   ];
 
-  String getSelectedVehiclesText() {
-    final selected = vehicles.where((v) => v.isSelected).toList();
-    if (selected.isEmpty) return 'Select';
-    if (selected.length == 1) return selected.first.vehicleNumber;
-    return '${selected.length} vehicles selected';
+  Set<VehicleItem> selectedVehicles = {};
+  final TextEditingController searchController = TextEditingController();
+  bool isDropdownExpanded = false;
+  List<VehicleItem> filteredVehicles = [];
+
+  @override
+  void initState() {
+    super.initState();
+    filteredVehicles = List.from(vehicles);
   }
 
-  void _showMultiSelectDialog() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return StatefulBuilder(
-          builder: (context, setDialogState) {
-            return AlertDialog(
-              title: const Text(
-                'Select Vehicles',
-                style: TextStyle(
-                  fontFamily: 'Poppins',
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              contentPadding: const EdgeInsets.symmetric(vertical: 16),
-              content: SizedBox(
-                width: double.maxFinite,
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: vehicles.length,
-                  itemBuilder: (context, index) {
-                    final vehicle = vehicles[index];
-                    return CheckboxListTile(
-                      value: vehicle.isSelected,
-                      onChanged: (bool? value) {
-                        setDialogState(() {
-                          vehicle.isSelected = value ?? false;
-                        });
-                        setState(() {});
-                      },
-                      title: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            vehicle.vehicleNumber,
-                            style: const TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          Text(
-                            vehicle.price,
-                            style: TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 11,
-                              color: Colors.grey[600],
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ],
-                      ),
-                      controlAffinity: ListTileControlAffinity.leading,
-                      activeColor: const Color(0xFF1C63AB),
-                    );
-                  },
-                ),
-              ),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text(
-                    'Done',
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      color: Color(0xFF1C63AB),
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
-              ],
-            );
-          },
-        );
-      },
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
+
+  String getSelectedVehiclesText() {
+    if (selectedVehicles.isEmpty) return 'Select';
+    if (selectedVehicles.length == 1) return selectedVehicles.first.vehicleNumber;
+    return '${selectedVehicles.length} vehicles selected';
+  }
+
+  void toggleDropdown() {
+    setState(() {
+      isDropdownExpanded = !isDropdownExpanded;
+      if (!isDropdownExpanded) {
+        searchController.clear();
+        filteredVehicles = List.from(vehicles);
+      }
+    });
+  }
+
+  void filterVehicles(String query) {
+    setState(() {
+      if (query.isEmpty) {
+        filteredVehicles = List.from(vehicles);
+      } else {
+        final lowerQuery = query.toLowerCase();
+        filteredVehicles = vehicles.where((item) {
+          final lowerNumber = item.vehicleNumber.toLowerCase();
+          return lowerNumber.contains(lowerQuery);
+        }).toList();
+      }
+    });
+  }
+
+  void toggleSelection(VehicleItem item) {
+    setState(() {
+      if (selectedVehicles.contains(item)) {
+        selectedVehicles.remove(item);
+      } else {
+        selectedVehicles.add(item);
+      }
+    });
+  }
+
+  Widget buildHighlightedText(String fullText, String searchQuery) {
+    if (searchQuery.isEmpty) {
+      return Text(
+        fullText,
+        style: const TextStyle(
+          fontFamily: 'Poppins',
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+        ),
+      );
+    }
+
+    final lowerText = fullText.toLowerCase();
+    final lowerQuery = searchQuery.toLowerCase();
+    final spans = <TextSpan>[];
+    var startIndex = 0;
+
+    while (startIndex < fullText.length) {
+      final index = lowerText.indexOf(lowerQuery, startIndex);
+      if (index == -1) {
+        spans.add(TextSpan(text: fullText.substring(startIndex)));
+        break;
+      }
+      if (index > startIndex) {
+        spans.add(TextSpan(text: fullText.substring(startIndex, index)));
+      }
+      spans.add(TextSpan(
+        text: fullText.substring(index, index + searchQuery.length),
+        style: TextStyle(
+          backgroundColor: Colors.yellow[200],
+          fontWeight: FontWeight.bold,
+          color: Colors.black,
+        ),
+      ));
+      startIndex = index + searchQuery.length;
+    }
+
+    return RichText(
+      text: TextSpan(
+        style: const TextStyle(
+          fontFamily: 'Poppins',
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+          color: Colors.black,
+        ),
+        children: spans,
+      ),
     );
   }
 
@@ -123,12 +143,13 @@ class _SelectVehiclePageState extends State<SelectVehiclePage> {
           children: [
             // Reusable App Bar
             Appbar(
-              label: 'Subscription',
+              title: 'Subscription',
+              centerTitle: true,
               onPressed: () => Navigator.pop(context),
             ),
 
             Expanded(
-              child: Padding(
+              child: SingleChildScrollView(
                 padding: const EdgeInsets.all(24.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -144,18 +165,17 @@ class _SelectVehiclePageState extends State<SelectVehiclePage> {
                       ),
                     ),
                     const SizedBox(height: 12),
-                    // Select Vehicle Multi-Select Input
+
+                    // Select Vehicle Dropdown Header
                     GestureDetector(
-                      onTap: _showMultiSelectDialog,
+                      onTap: toggleDropdown,
                       child: Container(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 16,
                           vertical: 16,
                         ),
                         decoration: BoxDecoration(
-                          color: const Color(
-                            0xFFF8F8F8,
-                          ), // Light grey background
+                          color: const Color(0xFFF8F8F8),
                           borderRadius: BorderRadius.circular(16),
                         ),
                         child: Row(
@@ -166,7 +186,7 @@ class _SelectVehiclePageState extends State<SelectVehiclePage> {
                               child: Text(
                                 getSelectedVehiclesText(),
                                 style: TextStyle(
-                                  color: vehicles.any((v) => v.isSelected)
+                                  color: selectedVehicles.isNotEmpty
                                       ? Colors.black
                                       : Colors.grey,
                                   fontFamily: 'Poppins',
@@ -174,14 +194,107 @@ class _SelectVehiclePageState extends State<SelectVehiclePage> {
                                 ),
                               ),
                             ),
-                            const Icon(
-                              Icons.keyboard_arrow_down,
+                            Icon(
+                              isDropdownExpanded
+                                  ? Icons.keyboard_arrow_up
+                                  : Icons.keyboard_arrow_down,
                               color: Colors.grey,
                             ),
                           ],
                         ),
                       ),
                     ),
+
+                    // Expanded Dropdown Content
+                    if (isDropdownExpanded) ...[
+                      const SizedBox(height: 12),
+
+                      // Search Field
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(color: const Color(0xFF1C63AB)),
+                        ),
+                        child: Column(
+                          children: [
+                            TextField(
+                              controller: searchController,
+                              onChanged: filterVehicles,
+                              decoration: InputDecoration(
+                                filled: true,
+                                fillColor: Colors.grey[100],
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                  borderSide: BorderSide.none,
+                                ),
+                                contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: 12,
+                                  vertical: 12,
+                                ),
+                                hintText: 'Search vehicles...',
+                                hintStyle: const TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontSize: 14,
+                                  color: Colors.grey,
+                                ),
+                                prefixIcon: const Icon(Icons.search, size: 20),
+                                suffixIcon: searchController.text.isNotEmpty
+                                    ? IconButton(
+                                        icon: const Icon(Icons.clear, size: 18),
+                                        onPressed: () {
+                                          searchController.clear();
+                                          filterVehicles('');
+                                        },
+                                      )
+                                    : null,
+                              ),
+                            ),
+                            const SizedBox(height: 8),
+
+                            // Results count
+                            Text(
+                              '${selectedVehicles.length} selected (${filteredVehicles.length} shown)',
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontFamily: 'Poppins',
+                                color: Colors.grey[600],
+                                fontStyle: FontStyle.italic,
+                              ),
+                            ),
+                            const SizedBox(height: 8),
+
+                            // Vehicle List
+                            Container(
+                              constraints: const BoxConstraints(maxHeight: 300),
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: filteredVehicles.length,
+                                itemBuilder: (context, index) {
+                                  final item = filteredVehicles[index];
+                                  final isSelected = selectedVehicles.contains(item);
+
+                                  return CheckboxListTile(
+                                    dense: true,
+                                    // Move checkbox to the right side
+                                    controlAffinity: ListTileControlAffinity.trailing,
+                                    value: isSelected,
+                                    title: buildHighlightedText(
+                                      item.vehicleNumber,
+                                      searchController.text,
+                                    ),
+                                    onChanged: (bool? newValue) {
+                                      toggleSelection(item);
+                                    },
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ],
                 ),
               ),
@@ -197,7 +310,7 @@ class _SelectVehiclePageState extends State<SelectVehiclePage> {
                   borderRadius: BorderRadius.circular(16),
                   boxShadow: [
                     BoxShadow(
-                      color: const Color.fromARGB(77, 21, 94, 149), // 0.3 * 255 ≈ 77
+                      color: const Color.fromARGB(77, 21, 94, 149),
                       blurRadius: 20,
                       offset: const Offset(0, 10),
                     ),
@@ -205,21 +318,26 @@ class _SelectVehiclePageState extends State<SelectVehiclePage> {
                 ),
                 child: ElevatedButton(
                   onPressed: () {
-                    // Get selected vehicles
-                    final selectedVehicles = vehicles
-                        .where((v) => v.isSelected)
-                        .toList();
+                    if (selectedVehicles.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Please select at least one vehicle'),
+                          backgroundColor: Colors.red,
+                        ),
+                      );
+                      return;
+                    }
 
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) =>
-                            CartPage(selectedVehicles: selectedVehicles),
+                            CartPage(selectedVehicles: selectedVehicles.toList()),
                       ),
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF1C63AB), // Dark blue color
+                    backgroundColor: const Color(0xFF1C63AB),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
                     ),
