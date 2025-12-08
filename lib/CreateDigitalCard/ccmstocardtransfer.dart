@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:truckrrone/CreateDigitalCard/widget/ccms_balance.dart';
+import 'package:truckrrone/CreateDigitalCard/widget/digitalcarddetails.dart';
 import 'package:truckrrone/Imagepath/imagepath.dart';
 import 'package:truckrrone/Route/approutes.dart';
 
@@ -222,122 +223,7 @@ class _CcmsToCardTransferScreenState extends State<CcmsToCardTransferScreen> {
                       const SizedBox(height: 24),
 
                       // Card Details
-                      Container(
-                        padding: const EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border. all(color: Colors.grey[300]!),
-                        ),
-                        child: Column(
-                          children: [
-                            // Card Number with Active Badge
-                            Row(
-                              children: [
-                             Image.asset(Imagepath.creditcard,width: 35,),
-                                const SizedBox(width: 8),
-                                const Expanded(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        '8264832004082913',
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                      Text(
-                                        'Digital Card',
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          color: Colors.grey,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                // Active Badge
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 12,
-                                    vertical: 4,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: Colors. green[100],
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                  child: const Text(
-                                    'Active',
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.green,
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(width: 8),
-                                // More Options
-                                Icon(
-                                  Icons.more_vert,
-                                  color: Colors.grey[600],
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 16),
-                            const Divider(height: 1),
-                            const SizedBox(height: 16),
-
-                            // Vehicle Number
-                            _buildInfoRow('Vehicle Number', 'UP23B10306'),
-                            const SizedBox(height: 12),
-
-                            // Driver Name
-                            _buildInfoRow('Driver Name', 'Muthu Kumer G'),
-                            const SizedBox(height: 12),
-
-                            // Reg Mobile Number
-                            _buildInfoRow('Reg Mobile Number', '+91 9875215456'),
-                            const SizedBox(height: 16),
-
-                            // Check Balance Button with Amount
-                            Container(
-                              padding: const EdgeInsets.all(12),
-                              decoration: BoxDecoration(
-                                color: Colors.blue[50],
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  TextButton(
-                                    onPressed: () {
-                                      // Handle check balance
-                                    },
-                                    child: const Text(
-                                      'Check balance',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600,
-                                        color: Color(0xFF1565C0),
-                                      ),
-                                    ),
-                                  ),
-                                  const Text(
-                                    '₹ 1,000',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                   DigitalCardDetails(),
                     ],
                   ),
                 ),
@@ -375,6 +261,7 @@ class _CcmsToCardTransferScreenState extends State<CcmsToCardTransferScreen> {
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {
+                        Navigator.pushNamed(context, AppRoutes.TransactionsuccessfulScreenpagecreatedigitalcard);
                         // Handle transfer
                       },
                       style: ElevatedButton.styleFrom(
@@ -427,3 +314,15 @@ class _CcmsToCardTransferScreenState extends State<CcmsToCardTransferScreen> {
     );
   }
 }
+
+const labelStyle = TextStyle(
+  fontFamily: "Poppins",
+  fontSize: 11,
+  color: Colors.black54,
+);
+
+const valueStyle = TextStyle(
+  fontFamily: "Poppins",
+  fontSize: 13,
+  fontWeight: FontWeight.w500,
+);

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:truckrrone/CreateDigitalCard/widget/appbar.dart';
 import 'package:truckrrone/Imagepath/imagepath.dart';
+import 'package:truckrrone/Route/approutes.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -29,6 +30,7 @@ class SettingsScreen extends StatelessWidget {
               iconColor: const Color(0xFF1565C0),
               title: 'Generate MPIN',
               onTap: () {
+                Navigator.pushNamed(context, AppRoutes.GenerateMpinScreenpagecreatedigitalcard);
                 // Navigate to Generate MPIN screen
               },
             ),
@@ -41,6 +43,7 @@ class SettingsScreen extends StatelessWidget {
               iconColor: const Color(0xFF1565C0),
               title: 'Transaction History',
               onTap: () {
+                Navigator.pushNamed(context, AppRoutes.TransactionhistoryScreenpagecreatedigitalcard);
                 // Navigate to Transaction History screen
               },
             ),
@@ -53,6 +56,7 @@ class SettingsScreen extends StatelessWidget {
               iconColor: const Color(0xFF1565C0),
               title: 'Advanced Settings',
               onTap: () {
+                Navigator.pushNamed(context, AppRoutes.AdvancedSettingsScreenpagecreatedigitalcard);
                 // Navigate to Advanced Settings screen
               },
             ),

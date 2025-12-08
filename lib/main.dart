@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:truckrrone/CreateDigitalCard/advancesetting.dart';
 import 'package:truckrrone/CreateDigitalCard/ccmstocardtransfer.dart';
+import 'package:truckrrone/CreateDigitalCard/generatempin.dart';
 import 'package:truckrrone/CreateDigitalCard/selectvehiclescreen.dart';
 import 'package:truckrrone/CreateDigitalCard/settingpage.dart';
 import 'package:truckrrone/Route/approutes.dart';
@@ -23,18 +25,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       initialRoute: AppRoutes.intialsubscription,
-      routes: {
-        AppRoutes.intialsubscription: (context) => const SubscriptionScreen(),
-        AppRoutes.subscription: (context) => const SubscriptionScreen(),
-        AppRoutes.selectvehicle: (context) => const SelectVehiclePage(),
-        AppRoutes.checkout: (context) => const CheckoutPage(),
-        AppRoutes.expiredpage: (context) => const FreeTrialExpiredPage(),
-        AppRoutes.wewillcallyou: (context) => const WeWillCallYouPage(),
-        AppRoutes.requestsendsuccessfully: (context) => const RequestSendSuccessfully(),
-        AppRoutes.selectvehiclecreatedigitalcard: (context) => const Selectvehiclescreen(),
-        AppRoutes.ccmstocardtransfercreatedigitalcard: (context) => const CcmsToCardTransferScreen(),
-        AppRoutes.settingspagecreatedigitalcard: (context) => const SettingsScreen(),
-      },
+      routes: AppRoutes.routes
     );
   }
 }

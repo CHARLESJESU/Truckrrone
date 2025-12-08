@@ -11,5 +11,8 @@ class Imagepath {
   static const String transactionhistory = 'assets/ccmsbalance/transactionhistory.png';
   static const String wallet = 'assets/ccmsbalance/wallet.png';
   static const String creditcard = 'assets/ccmsbalance/creditcard.png';
+  static const String notransaction = 'assets/ccmsbalance/notransaction.png';
+  static const String calender = 'assets/ccmsbalance/calender.png';
+  static const String transaction_successful = 'assets/ccmsbalance/successful_gif.gif';
 
 }
