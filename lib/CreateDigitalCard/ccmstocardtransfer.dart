@@ -125,6 +125,7 @@ class _CcmsToCardTransferScreenState extends State<CcmsToCardTransferScreen> {
 
                       // Search Box
                       Container(
+                        height: 40,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(8),
@@ -169,6 +170,7 @@ class _CcmsToCardTransferScreenState extends State<CcmsToCardTransferScreen> {
                           // Amount Input
                           Expanded(
                             child: Container(
+                              height: 40,
                               padding: const EdgeInsets.symmetric(
                                 horizontal: 16,
                                 vertical: 12,

@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       initialRoute: AppRoutes.intialsubscription,
-      routes: AppRoutes.routes
+      onGenerateRoute: AppRouteGenerator.generateRoute,
     );
   }
 }

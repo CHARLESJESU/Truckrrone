@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:truckrrone/CreateDigitalCard/Fuel_card_home_screen.dart';
+import 'package:truckrrone/CreateDigitalCard/View_details.dart';
 import 'package:truckrrone/CreateDigitalCard/advancesetting.dart';
 import 'package:truckrrone/CreateDigitalCard/ccmstocardtransfer.dart';
 import 'package:truckrrone/CreateDigitalCard/generatempin.dart';
 import 'package:truckrrone/CreateDigitalCard/selectvehiclescreen.dart';
 import 'package:truckrrone/CreateDigitalCard/settingpage.dart';
+import 'package:truckrrone/CreateDigitalCard/sign_up_screen.dart';
 import 'package:truckrrone/CreateDigitalCard/transaction_successful.dart';
 import 'package:truckrrone/CreateDigitalCard/transactionhistory.dart';
 import 'package:truckrrone/Expiredpage/freetrialexpired.dart';
 import 'package:truckrrone/Expiredpage/wewillcallyou.dart';
+import 'package:truckrrone/homepage.dart';
 import 'package:truckrrone/subscriptionpage/buyplantype.dart';
 import 'package:truckrrone/subscriptionpage/checkout_page.dart';
 import 'package:truckrrone/subscriptionpage/select_vehicle_page.dart';
@@ -28,28 +32,74 @@ class AppRoutes {
   static const String AdvancedSettingsScreenpagecreatedigitalcard = '/AdvancedSettingsScreenpagecreatedigitalcard';
   static const String TransactionhistoryScreenpagecreatedigitalcard = '/TransactionhistoryScreenpagecreatedigitalcard';
   static const String TransactionsuccessfulScreenpagecreatedigitalcard = '/TransactionsuccessfulScreenpagecreatedigitalcard';
+  static const String signupcreatedigitalcard = '/signupcreatedigitalcard';
+  static const String viewdetailscreatedigitalcard = '/viewdetailscreatedigitalcard';
+  static const String fuelcardhomecreatedigitalcard = '/fuelcardhomecreatedigitalcard';
+}
+
+class AppRouteGenerator {
+  static Route<dynamic> generateRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case AppRoutes.intialsubscription:
+        return MaterialPageRoute(builder: (_) => const HomePage());
+      case AppRoutes.subscription:
+        return MaterialPageRoute(builder: (_) => const SubscriptionScreen());
+
+      case AppRoutes.selectvehicle:
+        return MaterialPageRoute(builder: (_) => const SelectVehiclePage());
+
+      case AppRoutes.checkout:
+        return MaterialPageRoute(builder: (_) => const CheckoutPage());
+
+      case AppRoutes.expiredpage:
+        return MaterialPageRoute(builder: (_) => const FreeTrialExpiredPage());
+
+      case AppRoutes.wewillcallyou:
+        return MaterialPageRoute(builder: (_) => const WeWillCallYouPage());
+
+      case AppRoutes.signupcreatedigitalcard:
+        return MaterialPageRoute(builder: (_) => const SignUpScreen());
+
+      case AppRoutes.viewdetailscreatedigitalcard:
+        final args = settings.arguments as Map<String, dynamic>;
+          return MaterialPageRoute(
+            builder: (context) => ViewdetailsScreen(cardName: args['cardName']),
+          );
 
 
-  static Map<String, WidgetBuilder> routes = {
-   intialsubscription: (context) => const SubscriptionScreen(),
-    subscription: (context) => const SubscriptionScreen(),
-    selectvehicle: (context) => const SelectVehiclePage(),
-    checkout: (context) => const CheckoutPage(),
-    expiredpage: (context) => const FreeTrialExpiredPage(),
-    wewillcallyou: (context) => const WeWillCallYouPage(),
-    TransactionsuccessfulScreenpagecreatedigitalcard: (context) => const TransactionSuccessful(),
-    TransactionhistoryScreenpagecreatedigitalcard: (context) => const TransactionHistoryScreen(),
-   requestsendsuccessfully: (
-        context) => const RequestSendSuccessfully(),
-   selectvehiclecreatedigitalcard: (
-        context) => const Selectvehiclescreen(),
-   ccmstocardtransfercreatedigitalcard: (
-        context) => const CcmsToCardTransferScreen(),
-   settingspagecreatedigitalcard: (
-        context) => const SettingsScreen(),
-   GenerateMpinScreenpagecreatedigitalcard: (
-        context) => const GenerateMpinScreen(),
-    AdvancedSettingsScreenpagecreatedigitalcard: (
-        context) => const AdvancedSettingsScreen(),
-  };
+      case AppRoutes.fuelcardhomecreatedigitalcard:
+        return MaterialPageRoute(builder: (_) => const FuelHomeScreen());
+
+      case AppRoutes.TransactionsuccessfulScreenpagecreatedigitalcard:
+        return MaterialPageRoute(builder: (_) => const TransactionSuccessful());
+
+      case AppRoutes.TransactionhistoryScreenpagecreatedigitalcard:
+        return MaterialPageRoute(builder: (_) => const TransactionHistoryScreen());
+
+      case AppRoutes.requestsendsuccessfully:
+        return MaterialPageRoute(builder: (_) => const RequestSendSuccessfully());
+
+      case AppRoutes.selectvehiclecreatedigitalcard:
+        return MaterialPageRoute(builder: (_) => const Selectvehiclescreen());
+
+      case AppRoutes.ccmstocardtransfercreatedigitalcard:
+        return MaterialPageRoute(builder: (_) => const CcmsToCardTransferScreen());
+
+      case AppRoutes.settingspagecreatedigitalcard:
+        return MaterialPageRoute(builder: (_) => const SettingsScreen());
+
+      case AppRoutes.GenerateMpinScreenpagecreatedigitalcard:
+        return MaterialPageRoute(builder: (_) => const GenerateMpinScreen());
+
+      case AppRoutes.AdvancedSettingsScreenpagecreatedigitalcard:
+        return MaterialPageRoute(builder: (_) => const AdvancedSettingsScreen());
+
+      default:
+        return MaterialPageRoute(
+          builder: (_) => const Scaffold(
+            body: Center(child: Text('Route not found')),
+          ),
+        );
+    }
+  }
 }

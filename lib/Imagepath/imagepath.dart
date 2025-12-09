@@ -14,5 +14,14 @@ class Imagepath {
   static const String notransaction = 'assets/ccmsbalance/notransaction.png';
   static const String calender = 'assets/ccmsbalance/calender.png';
   static const String transaction_successful = 'assets/ccmsbalance/successful_gif.gif';
-
+  static const String backbutton = 'assets/ccmsbalance/backbutton.png';
+  static const String foreground = 'assets/ccmsbalance/foreground.png';
+  static const String background = 'assets/ccmsbalance/background.png';
+  static const String hplogo = 'assets/ccmsbalance/Hp_logo.png';
+  static const String hpcl = 'assets/ccmsbalance/HPCL.png';
+  static const String oil = 'assets/ccmsbalance/oil.png';
+  static const String coins ='assets/ccmsbalance/coin.png';
+  static const String settings = 'assets/ccmsbalance/setting.png';
+  static const String ccmstocard = 'assets/ccmsbalance/ccmstocard.png';
+  static const String cardtoccms = 'assets/ccmsbalance/cardtoccms.png';
 }

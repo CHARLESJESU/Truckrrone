@@ -82,8 +82,8 @@ class SettingsScreen extends StatelessWidget {
           children: [
             // Icon Container
             Container(
-              width: 40,
-              height: 40,
+              width: 25,
+              height: 25,
               decoration: BoxDecoration(
                 color: iconColor. withOpacity(0.1),
                 borderRadius: BorderRadius. circular(8),
