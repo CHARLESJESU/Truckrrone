@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:truckrrone/CreateDigitalCard/Fuel_card_home_screen.dart';
-import 'package:truckrrone/CreateDigitalCard/widget/appbar.dart';
 import 'package:truckrrone/Imagepath/imagepath.dart';
 import 'package:truckrrone/Route/approutes.dart';
 
@@ -15,7 +14,8 @@ class ViewdetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar:Appbar(title: "Diesel", onPressed: (){}),
+      appBar:AppBar(
+          backgroundColor:Colors.white,title: Text("Diesel",style: TextStyle(fontFamily: "Poppins"),)),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 24),

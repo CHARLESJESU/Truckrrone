@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:truckrrone/CreateDigitalCard/Fuel_card_screen.dart';
 import 'package:truckrrone/CreateDigitalCard/widget/Elevated_button.dart';
-import 'package:truckrrone/CreateDigitalCard/widget/appbar.dart';
 import 'package:truckrrone/Imagepath/imagepath.dart';
 
 
@@ -13,7 +12,7 @@ class SignUpScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: Appbar(title: "Diesel", onPressed: (){}),
+      appBar: AppBar(backgroundColor:Colors.white,title: Text("Diesel",style: TextStyle(fontFamily: "Poppins"),), ),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 24),
