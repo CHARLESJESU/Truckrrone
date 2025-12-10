@@ -161,7 +161,7 @@ class _FuelCardRegistrationSheetState extends State<FuelCardRegistrationSheet> {
                     suffix: GestureDetector(
                       onTap: isPanvalid ? () {} : null,
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 20),
+                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                         decoration: BoxDecoration(
                           color: isPanvalid ? const Color(0xFF1C63AB) : Colors.grey,
                           borderRadius: BorderRadius.circular(6),
@@ -169,8 +169,9 @@ class _FuelCardRegistrationSheetState extends State<FuelCardRegistrationSheet> {
                         child: Text(
                           "Verify",
                           style: TextStyle(
-                            color: Colors.white.withOpacity(isPanvalid ? 1.0 : 0.5),
+                            color: Colors.white,
                             fontWeight: FontWeight.w600,
+                            fontFamily: "Poppins"
                           ),
                         ),
                       ),
@@ -196,12 +197,13 @@ class _FuelCardRegistrationSheetState extends State<FuelCardRegistrationSheet> {
                   CustomSingleSelectDropdown(
                     hintText: "Select State",
                     selectedValue: selectedCurState,
+                    enableSearch: false,
                     items: const [
-                      ["Tamil Nadu", "Tamil Nadu"],
-                      ["Kerala", "Kerala"],
-                      ["Karnataka", "Karnataka"],
-                      ["Maharashtra", "Maharashtra"],
-                      ["Delhi", "Delhi"],
+                      [ "Tamil Nadu"],
+                      ["Kerala"],
+                      ["Karnataka"],
+                      [ "Maharashtra"],
+                      [ "Delhi"],
                     ],
                     onChanged: (v) => setState(() => selectedCurState = v),
                   ),
@@ -212,11 +214,12 @@ class _FuelCardRegistrationSheetState extends State<FuelCardRegistrationSheet> {
                   CustomSingleSelectDropdown(
                     hintText: "Select District",
                     selectedValue: selectedCurDistrict,
+                    enableSearch: false,
                     items: const [
-                      ["Chennai", "Chennai"],
-                      ["Coimbatore", "Coimbatore"],
-                      ["Madurai", "Madurai"],
-                      ["Salem", "Salem"],
+                      [ "Chennai"],
+                      [ "Coimbatore"],
+                      [ "Madurai"],
+                      [ "Salem"],
                     ],
                     onChanged: (v) => setState(() => selectedCurDistrict = v),
                   ),
@@ -237,6 +240,7 @@ class _FuelCardRegistrationSheetState extends State<FuelCardRegistrationSheet> {
                   Row(
                     children: [
                       Checkbox(
+                        activeColor: Color(0xFF1C63AB),
                         value: sameAsCurrent,
                         onChanged: (v) {
                           setState(() => sameAsCurrent = v ?? false);
@@ -270,12 +274,13 @@ class _FuelCardRegistrationSheetState extends State<FuelCardRegistrationSheet> {
                   CustomSingleSelectDropdown(
                     hintText: "Select State",
                     selectedValue: selectedPermState,
+                     enableSearch: false,
                     items: const [
-                      ["Tamil Nadu", "Tamil Nadu"],
-                      ["Kerala", "Kerala"],
-                      ["Karnataka", "Karnataka"],
-                      ["Maharashtra", "Maharashtra"],
-                      ["Delhi", "Delhi"],
+                      [ "Tamil Nadu"],
+                      [ "Kerala"],
+                      [ "Karnataka"],
+                      [ "Maharashtra"],
+                      [ "Delhi"],
                     ],
                     onChanged: (v) => setState(() => selectedPermState = v),
                   ),
@@ -286,11 +291,12 @@ class _FuelCardRegistrationSheetState extends State<FuelCardRegistrationSheet> {
                   CustomSingleSelectDropdown(
                     hintText: "Select District",
                     selectedValue: selectedPermDistrict,
+                    enableSearch: false,
                     items: const [
-                      ["Chennai", "Chennai"],
-                      ["Coimbatore", "Coimbatore"],
-                      ["Madurai", "Madurai"],
-                      ["Salem", "Salem"],
+                      [ "Chennai"],
+                      [ "Coimbatore"],
+                      [ "Madurai"],
+                      [ "Salem"],
                     ],
                     onChanged: (v) => setState(() => selectedPermDistrict = v),
                   ),
@@ -330,7 +336,7 @@ class _FuelCardRegistrationSheetState extends State<FuelCardRegistrationSheet> {
                   child: CustomButton(
                     text: "Cancel",
                     width: 10,
-                    radius: 10,
+                    radius: 5,
                     height: 40,
                     fontfamily: "Poppins",
                     color: Colors.white,
@@ -344,19 +350,13 @@ class _FuelCardRegistrationSheetState extends State<FuelCardRegistrationSheet> {
                   child: CustomButton(
                     text: "Submit",
                     width: 10,
-                    radius: 10,
+                    radius: 5,
                     height: 40,
                     fontfamily: "Poppins",
                     color: const Color(0xFF1C63AB),
                     textColor: Colors.white,
                     fontSize: 15,
                     onPressed: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (context) => ViewdetailsScreen(cardName: _cardNameCtrl.text),
-                      //   ),
-                      // );
                       Navigator.pushNamed(context, AppRoutes.viewdetailscreatedigitalcard, arguments: {
                         'cardName': _cardNameCtrl.text,
                       });

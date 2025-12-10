@@ -11,11 +11,11 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: Appbar(title: "Diesel", onPressed: (){}),
-        body: SingleChildScrollView(
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: Appbar(title: "Diesel", onPressed: (){}),
+      body: SafeArea(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Column(
             children: [
@@ -43,14 +43,14 @@ class SignUpScreen extends StatelessWidget {
                           fit: BoxFit.contain,
                         ),
                       ),
-
+            
                       Positioned.fill(
                         child: Image.asset(
                           Imagepath.foreground,
                           fit: BoxFit.cover,
                         ),
                       ),
-
+            
                       Positioned(
                         top: 20,
                         left: 9,
@@ -102,7 +102,7 @@ class SignUpScreen extends StatelessWidget {
                   showFuelCardBottomSheet(context);
                 },
                 color: const Color(0xFF1C63AB),
-                radius: 15,
+                radius: 5,
                 height: 56,
                 fontSize: 18,
               ),

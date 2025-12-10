@@ -23,15 +23,15 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40,
+      height: 45,
       child: TextFormField(
       
         controller: controller,
         keyboardType: keyboardType,
         maxLength: maxlenght,
         decoration: InputDecoration(
-      
           hintText: hint,
+
           counterText: "",
           hintStyle: TextStyle(color: Colors.grey[400],fontFamily: 'Poppins'),
           filled: true,
@@ -57,8 +57,9 @@ class CustomTextField extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
             borderSide: const BorderSide(color: Colors.blue, width: 2),
           ),
-          contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         ),
+
       ),
     );
   }

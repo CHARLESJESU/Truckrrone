@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:truckrrone/Imagepath/imagepath.dart';
+import 'dailogbox.dart';
+
 
 class DigitalCardDetails extends StatelessWidget {
   const DigitalCardDetails({super.key});
@@ -54,12 +56,13 @@ Widget ccmsBalanceWidget(
                       cardNumber,
                       style: const TextStyle(
                         fontFamily: "Poppins",
-                        fontSize: 13,
+                        fontSize: 12,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
                     Text(cardType,style: TextStyle(
                         fontFamily: "Poppins",
+                        fontSize: 11,
                         color: Color(0xFF105499)
 
                     ),)
@@ -68,55 +71,74 @@ Widget ccmsBalanceWidget(
               ),
               Container(
                 padding: const EdgeInsets.symmetric(
-                    horizontal: 10, vertical: 4),
+                    horizontal: 5, vertical: 4),
                 decoration: BoxDecoration(
-                  color: Color(0xFFD5F3D6),
-                  borderRadius: BorderRadius.circular(8),
+                  color: Color(0xFFE1FAEB),
+                  borderRadius: BorderRadius.circular(5),
                 ),
                 child: Text(
                   status,
                   style: TextStyle(
-                      color: Colors.green,
+                      color: Color(0xFF28A25B),
                       fontSize: 11,
                       fontFamily: "Poppins"),
                 ),
               ),
-              const SizedBox(width: 8),
-              Icon(Icons.more_vert),
+              const SizedBox(width: 1),
+              PopupMenuButton<VoidCallback>(
+                icon: const Icon(Icons.more_vert),
+                color: Colors.transparent,
+
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                elevation: 0,
+                offset: const Offset(0, 0
+                ),
+                itemBuilder: (BuildContext context) => [
+                  PopupMenuItem(
+                    enabled: true,
+                    padding: EdgeInsets.zero,
+                    child: CardOptionsPopup(
+                      onBlockCard: () {
+                        showBlockCardDialog(context);
+                      },
+                      onChangeDriver: () {
+                        showChangeDriverDialog(context);
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
-
-          const SizedBox(height: 12),
-
-          Row(
-            children: [
-              Text("Vehicle Number", style: labelStyle),
-              SizedBox(width:90 ),
-              Text(vehicleNumber, style: valueStyle),
-            ],
-          ),
-
+          Divider(color: Colors.grey,),
 
           const SizedBox(height: 10),
 
-          Row(
+          Column(
             children: [
-              Text("Driver Name", style: labelStyle),
-              SizedBox(width:90 ),
-              Text(driverName, style: valueStyle),
+
+              InfoRow(
+                label: "Vehicle Number",
+                value: "TN52/GH571",
+                labelStyle: labelStyle,
+                valueStyle: valueStyle,
+              ),
+
+              InfoRow(
+                label: "Driver Name",
+                value: "John Doe",
+                labelStyle: labelStyle,
+                valueStyle: valueStyle,
+              ),
+
+              InfoRow(
+                label: "Reg Mobile Number",
+                value: "+91 9876543210",
+                labelStyle: labelStyle,
+                valueStyle: valueStyle,
+              ),
             ],
           ),
-
-          const SizedBox(height: 10),
-
-          Row(
-            children: [
-              Text("Reg Mobile Number", style: labelStyle),
-              SizedBox(width:40 ),
-              Text(mobileNumber, style: valueStyle),
-            ],
-          ),
-
 
           const SizedBox(height: 12),
 
@@ -154,3 +176,51 @@ const valueStyle = TextStyle(
   fontSize: 13,
   fontWeight: FontWeight.w500,
 );
+
+Widget infoRow(String label, String value) {
+  return Row(
+    children: [
+      Expanded(
+        flex: 9,
+        child: Text(label, style: labelStyle),
+      ),
+      Expanded(
+        flex: 6,
+        child: Text(value, style: valueStyle),
+      ),
+    ],
+  );
+}
+class InfoRow extends StatelessWidget {
+  final String label;
+  final String value;
+  final TextStyle labelStyle;
+  final TextStyle valueStyle;
+
+  const InfoRow({
+    super.key,
+    required this.label,
+    required this.value,
+    required this.labelStyle,
+    required this.valueStyle,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5),
+      child: Row(
+        children: [
+          Text(label, style: labelStyle),
+          Expanded(
+            child: Text(
+              value,
+              style: valueStyle,
+              textAlign: TextAlign.right,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

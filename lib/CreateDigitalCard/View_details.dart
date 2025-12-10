@@ -13,11 +13,11 @@ class ViewdetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar:Appbar(title: "Diesel", onPressed: (){}),
-        body: SingleChildScrollView(
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar:Appbar(title: "Diesel", onPressed: (){}),
+      body: SafeArea(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Column(
             children: [
@@ -124,7 +124,7 @@ class ViewdetailsScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-
+            
                           Positioned(
                             top: 20,
                             left: 9,

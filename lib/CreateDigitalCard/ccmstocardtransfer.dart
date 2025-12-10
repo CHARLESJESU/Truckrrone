@@ -68,7 +68,8 @@ class _CcmsToCardTransferScreenState extends State<CcmsToCardTransferScreen> {
                   // Settings Icon
                   IconButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, AppRoutes.settingspagecreatedigitalcard);
+
+
                       // Handle settings
                     },
                     icon: Icon(

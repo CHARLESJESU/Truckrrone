@@ -32,7 +32,6 @@ class Appbar extends StatelessWidget implements PreferredSizeWidget {
         ),
         child: Row(
           children: [
-            // Back Button
             Container(
               decoration: BoxDecoration(
                 color: Colors.grey[100],
@@ -47,7 +46,6 @@ class Appbar extends StatelessWidget implements PreferredSizeWidget {
                 onPressed: onPressed,
               ),
             ),
-            // Title
             if (centerTitle)
               Expanded(
                 child: Center(
@@ -75,7 +73,6 @@ class Appbar extends StatelessWidget implements PreferredSizeWidget {
                   ),
                 ),
               ),
-            // Placeholder to balance the row (only when centered)
             if (centerTitle) const SizedBox(width: 48),
           ],
         ),

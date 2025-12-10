@@ -59,13 +59,7 @@ class _CustomSingleSelectDropdownState
   @override
   Widget build(BuildContext context) {
     return Container(
-
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      decoration: BoxDecoration(
-        color: Colors.grey[50],
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.grey.shade300),
-      ),
       child: ProperSingleSelectDropdown(
         items: widget.items,
         hintText: widget.hintText,

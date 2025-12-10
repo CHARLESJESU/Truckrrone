@@ -11,6 +11,8 @@ import 'package:truckrrone/subscriptionpage/select_vehicle_page.dart';
 import 'package:truckrrone/Expiredpage/freetrialexpired.dart';
 import 'package:truckrrone/Expiredpage/wewillcallyou.dart';
 
+import 'Route/approutes.dart';
+
 void main() {
   runApp(const MyApp());
 }
